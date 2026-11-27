@@ -9,9 +9,7 @@
   function showStat(h){clearStats();h.classList.add('active');h.setAttribute('aria-expanded','true');var r=h.getBoundingClientRect(),tip=h.querySelector('.stat-tip'),w=tip.offsetWidth,ht=tip.offsetHeight;var x=Math.max(12,Math.min(innerWidth-w-12,r.right-w));var y=r.bottom+10;if(r.left>w+24){x=r.left-w-12;y=r.top;}if(y+ht>innerHeight-12)y=r.top-ht-10;h.style.setProperty('--tip-x',x+'px');h.style.setProperty('--tip-y',Math.max(12,y)+'px')}
   hotspots.forEach(function(h){h.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')showStat(h)});h.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')clearStats()});h.addEventListener('focus',function(){if(h.matches(':focus-visible'))showStat(h)});h.addEventListener('blur',clearStats);h.addEventListener('click',function(e){e.stopPropagation();showStat(h)})});
   addEventListener('resize',clearStats);
-  boot.addEventListener('click',function(e){
-    if(!ready || !e.target.closest('.opening-start'))return;beep(520,.1);setTimeout(function(){beep(780,.18)},110);
-    boot.classList.add('out');document.body.classList.remove('lock');window.scrollTo(0,0)});
+  boot.addEventListener('click', function(e) {if (boot.classList.contains('out')) return;if (!ready || !e.target.closest('.opening-start')) return;beep(520, .1);setTimeout(function() {beep(780, .18);}, 110);boot.classList.add('out');document.body.classList.remove('lock');window.scrollTo(0, 0);});
   document.getElementById('home').onclick=function(){beep(400,.08);boot.classList.remove('out');document.body.classList.add('lock')};
   var b=document.getElementById('snd');b.onclick=function(){sfx=!sfx;b.textContent=sfx?'SFX ON':'SFX OFF';beep(440,.08)};
 
@@ -31,7 +29,7 @@
   {
     "k": "PROJECT 01 · PENTEST",
     "t": "Penetration Testing Report",
-    "d": "OSCP-style pentest of a vulnerable Ubuntu machine, from scanning to confirmed exploitation.",
+    "d": "Did a pentest of a vulnerable Ubuntu machine, from scanning to confirmed exploitation.",
     "module": "Offensive Security Module",
     "b": [
       "Scanned the target with Nessus and manually exploited SQL injection, local file inclusion, stored XSS and privilege escalation through misconfigurations.",
@@ -58,7 +56,7 @@
       "Provided my teammate with findings, screenshots and remediation steps for the report."
     ],
     "tools": [
-      "Metasploit"
+      "Metasploit", "OpenVAS"
     ],
     "learn": "An unpatched service can lead to full system compromise, highlighting the importance of timely patching."
   },
@@ -215,7 +213,7 @@ document.querySelectorAll('.q').forEach(function(c){
   });
   document.querySelectorAll('.ach').forEach(function(a){function tg(){var o=a.classList.toggle('open');a.setAttribute('aria-expanded',o);beep(o?660:440,.06)}a.addEventListener('click',tg);a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tg()}})});
   var g=document.getElementById('glow');addEventListener('mousemove',function(e){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
-  document.getElementById('vres').onclick=function(){isOpen=true;hov=false;mk.textContent='RESUME';mt.textContent='Yap Zhi Ning';md.textContent='Offensive Cybersecurity · 3 pages';ms.className='shots one';ms.style.display='';ms.innerHTML='';['resume-page-1.png','resume-page-2.png','resume-page-3.png'].forEach(function(id,i){var s=document.createElement('div');s.className='shot';var im=document.createElement('img');im.src=id;im.alt='Resume page '+(i+1);s.appendChild(im);ms.appendChild(s)});modal.classList.add('on');modal.setAttribute('aria-hidden','false');mclose.focus();beep(660,.08)};
+  document.getElementById('vres').onclick=function(){isOpen=true;hov=false;mk.textContent='RESUME';mt.textContent='Yap Zhi Ning';md.textContent='Offensive Cybersecurity · 2 pages';ms.className='shots one';ms.style.display='';ms.innerHTML='';['resume-page-1.png','resume-page-2.png'].forEach(function(id,i){var s=document.createElement('div');s.className='shot';var im=document.createElement('img');im.src=id;im.alt='Resume page '+(i+1);s.appendChild(im);ms.appendChild(s)});modal.classList.add('on');modal.setAttribute('aria-hidden','false');mclose.focus();beep(660,.08)};
   var dlb=document.getElementById('dlres');
   try{(window.claude&&claude.use?claude.use('downloads'):Promise.resolve(null)).then(function(d){if(!d)return;dlb.style.display='';dlb.onclick=function(){beep(660,.08);fetch('Yap_Zhi_Ning_Resume.pdf').then(function(r){return r.blob()}).then(function(b){return d.save({filename:'Yap_Zhi_Ning_Resume.pdf',data:b})}).catch(function(){})}}).catch(function(){})}catch(e){}
   var g=document.getElementById('glow');addEventListener('mousemove',function(e){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
@@ -283,13 +281,12 @@ document.querySelectorAll('.q').forEach(function(c){
     },
     {
         "title": "Shenzhen Overseas Study Trip",
-        "image": "images/TCT.jpeg",
+        "image": "images/shenzhen-photo-5.jpeg",
         "photos": [
             {"src": "images/shenzhen-photo-1.jpeg", "label": "CUHK-Shenzhen"},
-            {"src": "images/shenzhen-photo-2.jpeg", "label": "LimX Dynamics"},
-            {"src": "images/shenzhen-photo-3.jpeg", "label": "Robotics"},
-            {"src": "images/shenzhen-photo-4.jpeg", "label": "TCT Exhibition"},
-            {"src": "images/shenzhen-photo-5.jpeg", "label": "Group Photo"}
+            {"src": "images/shenzhen-photo-2.jpeg", "label": "Huaqiangbei"},
+            {"src": "images/TCT.jpeg", "label": "TCT Exhibition"},
+            {"src": "images/shenzhen-photo-4.jpeg", "label": "Shenzhen Science and Technology Museum"},
         ],
         "category": "STUDY TRIP",
         "date": "2026",
@@ -303,7 +300,8 @@ document.querySelectorAll('.q').forEach(function(c){
         "activities": [
             "Visited the Chinese University of Hong Kong, Shenzhen (CUHK-Shenzhen), to understand student life, learning culture and further education opportunities after my diploma.",
             "Visited LimX Dynamics to explore how humanoid robots are developed and learn about ongoing robotics projects.",
-            "Attended the TCT exhibition to discover innovations in AI, 3D printing and other emerging technologies."
+            "Attended the TCT exhibition to discover innovations in AI, 3D printing and other emerging technologies.",
+            "Visited the Shenzhen Science and Technology Meuseum to learn how technology evolve over the years in China."
         ],
         "reflection": "The trip broadened my perspective on technology, sparked my interest in AI and robotics, and encouraged me to explore further education and career opportunities beyond cybersecurity and digital forensics."
     }
