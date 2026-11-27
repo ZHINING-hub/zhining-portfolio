@@ -1111,20 +1111,16 @@ section,
     filter 0.18s ease;
 }
 #boot {
-    background: #19082c;
+    background: #18082b;
 }
 #boot .cyber-art-wrap::after {
   display: none !important;
   animation: none !important;
 }
 #boot .opening-art {
-    mask-image:
-        linear-gradient(to right,
-            transparent, black 6%, black 94%, transparent),
-        linear-gradient(to bottom,
-            transparent, black 2%, black 94%, transparent);
-
-    mask-composite: intersect;
+    mask-image: none;
+    -webkit-mask-image: none;
+    mix-blend-mode: lighten;
 }
 #boot .opening-start {
   left: 25.868440502586843%;
