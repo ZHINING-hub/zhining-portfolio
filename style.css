@@ -1119,8 +1119,12 @@ section,
 }
 #boot .opening-art {
     mix-blend-mode: normal;
-    mask-image: none;
-    -webkit-mask-image: none;
+
+    mask-image:
+        linear-gradient(to right, transparent, black 2%, black 98%, transparent),
+        linear-gradient(to bottom, transparent, black 2%, black 98%, transparent);
+
+    mask-composite: intersect;
 }
 #boot .opening-start {
   left: 25.868440502586843%;
@@ -1855,7 +1859,7 @@ section,
 
 /* BOOT */
 #boot {
-  background: #19082c;
+  background: #14022a;
 }
 #boot .opening-art,
 #boot:not(.ready) .opening-art {
