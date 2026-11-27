@@ -1,4 +1,3 @@
-
 :root{--bg:#120d1c;--card:#1d1530;--ink:#fbe9e0;--mute:#a99bb8;--pink:#ff7a8a;--orange:#ffb066;--glow:#8fb4ff;--violet:#7b4dff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:70px}
@@ -577,3 +576,60 @@ section,.hud{position:relative}.hud{position:fixed}
 .sq-trip-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#120d1c}
 .sq-trip-photos figcaption{color:var(--mute);font-size:12px;margin-top:6px;text-align:center}
 @media(max-width:480px){.sq-trip-photos{grid-template-columns:1fr}.sq-trip-photos figure:last-child .sq-trip-frame{aspect-ratio:4/3}}
+
+/* BOOT */
+#boot {background: #19082c}
+#boot .opening-art,#boot:not(.ready) .opening-art {max-height: calc(96dvh - 40px);clip-path: none;filter: none;}
+
+/* Animated binary numbers */
+.cyber-digit {font-size: clamp(10px, 1.8cqw, 25px);animation: binaryFloat var(--t) ease-in-out infinite;animation-delay: var(--d);}
+@keyframes binaryFloat {
+    0% {transform: translate(0, 15px);opacity: 0;}
+    30% {opacity: 1;}
+    70% {opacity: 0.8;}
+    100% {transform: translate(var(--dx), -55px);opacity: 0;}
+}
+
+/* Personal traits hover areas */
+#boot .stat-hotspot {left: 62%;width: 29%;height: 4.4%;}
+
+/* Disable old button overlay */
+#boot .cyber-art-wrap::after {display: none !important;}
+
+/* New start button image and position */
+#boot .opening-start,
+#boot.ready .opening-start:hover,
+#boot.ready .opening-start:focus-visible {
+    position: absolute;
+    left: 27.98%;
+    top: 82.5%;
+    width: 43.97%;
+    height: 11.49%;
+
+    background: transparent
+        url("images/start-button.png")
+        center / 100% 100% no-repeat;
+
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    cursor: pointer;
+    z-index: 12;
+
+    transition: transform 0.2s ease;
+}
+
+/* Hide button while loading */
+#boot:not(.ready) .opening-start {visibility: hidden;pointer-events: none;}
+
+/* Blink after loading */
+
+#boot.ready .opening-start {visibility: visible;pointer-events: auto;animation: newStartBlink 1.35s ease-in-out infinite;}
+@keyframes newStartBlink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0.3;}
+}
+
+/* Enlarge and stop blinking on hover */
+#boot.ready .opening-start:hover,
+#boot.ready .opening-start:focus-visible {animation: none !important;opacity: 1;transform: scale(1.12);}
